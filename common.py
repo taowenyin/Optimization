@@ -24,3 +24,8 @@ def rank_one_step(g, d, q):
 # 计算x
 def rank_one_x(x, step, d):
     return x + step * d
+
+
+# 计算x的差值
+def delta_x(step, d):
+    return step * d

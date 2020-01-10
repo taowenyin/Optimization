@@ -1,25 +1,12 @@
 import numpy as np
 import common as com
 
+from QuasiNewtonRankOne import RankOne
+
 if __name__ == '__main__':
-    q = [
-        [2, 0],
-        [0, 1]
-    ]
+    q = np.array([2, 0, 0, 1]).reshape(2, 2)
+    x = np.array([1, 2]).reshape(2, 1)
+    threshold = np.zeros(x.shape)
 
-    x = [
-        [1],
-        [2]
-    ]
-
-    g = com.rank_one_gradient(q, x)
-    print(g)
-
-    d = com.rank_one_direction(com.create_unit_matrix(2), g)
-    print(d)
-
-    a = com.rank_one_step(g, d, q)
-    print(a)
-
-    x = com.rank_one_x(x, a, d)
-    print(x)
+    rankOne = RankOne(x, com.create_unit_matrix(x.shape[0]), q, threshold)
+    print(rankOne.minimize())
