@@ -1,12 +1,13 @@
 import numpy as np
 import common as com
 
-from QuasiNewtonRankOne import RankOne
+from QuasiNewton import QuasiNewton
+from QuasiNewton import AlgorithmType
 
 if __name__ == '__main__':
-    q = np.array([2, 0, 0, 1]).reshape(2, 2)
-    x = np.array([1, 2]).reshape(2, 1)
+    x = np.array([0, 0]).reshape(2, 1)
+    q = np.array([4, 2, 2, 2]).reshape(2, 2)
+    b = np.array([-1, 1]).reshape(2, 1)
     threshold = np.zeros(x.shape)
-
-    rankOne = RankOne(x, com.create_unit_matrix(x.shape[0]), q, threshold)
-    print(rankOne.minimize())
+    bfgs = QuasiNewton(x, com.create_unit_matrix(x.shape[0]), q, b, threshold, AlgorithmType.BFGS)
+    print(bfgs.minimize())
